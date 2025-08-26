@@ -1,6 +1,6 @@
 package com.nttdata.steps;
 
-import io.restassured.RestAssured;
+import com.nttdata.model.Order;
 import net.serenitybdd.rest.SerenityRest;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
@@ -13,16 +13,12 @@ public class PetStoreStep {
     }
 
     public static void crearOrder(String id, String petId, String quantity, String shipDate, String status, String complete) {
+        Order order = new Order(
+                id, petId, quantity, shipDate, status, complete);
+
         SerenityRest.given()
                 .contentType("application/json")
-                .body("{\n" +
-                        "  \"id\": " + id + ",\n" +
-                        "  \"petId\": " + petId + ",\n" +
-                        "  \"quantity\": " + quantity + ",\n" +
-                        "  \"shipDate\": \"" + shipDate + "\",\n" +
-                        "  \"status\": \"" + status + "\",\n" +
-                        "  \"complete\": " + complete + "\n" +
-                        "}")
+                .body(order)
                 .when()
                 .post(URL + "/order");
     }
