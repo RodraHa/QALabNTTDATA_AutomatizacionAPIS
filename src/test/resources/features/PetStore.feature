@@ -3,6 +3,7 @@ Feature: Ordenes de la tienda PetStore
   Background:
     Given la url del servicio "https://petstore.swagger.io/v2/store"
 
+  @TestEjecucion
   Scenario Outline: Creación de Order
     When creo la order con id "<id>", petId "<petId>", quantity "<quantity>", shipDate "<shipDate>", status "<status>" y complete "<complete>"
     Then el código de respuesta es 200
@@ -10,10 +11,11 @@ Feature: Ordenes de la tienda PetStore
 
     Examples:
       | id  | petId | quantity | shipDate                 | status | complete |
-      | 1   | 1     | 1        | 2024-06-10T14:00:00.000Z | placed | true     |
-      | 2   | 2     | 2        | 2024-06-11T14:00:00.000Z | placed | false    |
-      | 3   | 3     | 3        | 2024-06-12T14:00:00.000Z | placed | true     |
+      | 1   | 1     | 1        | 2025-08-25T14:00:00.000Z | placed | true     |
+      | 2   | 2     | 2        | 2025-08-25T14:00:00.000Z | placed | false    |
+      | 3   | 3     | 3        | 2025-08-25T14:00:00.000Z | placed | true     |
 
+  @TestEjecucion
   Scenario Outline: Consulta de Order
     When consulto la order con id "<id>"
     Then el código de respuesta es 200
